@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import Image from "next/image";
 import { useState, useMemo, useEffect, FC } from "react";
@@ -21,175 +21,37 @@ interface MediaData {
 // --- DATABASE FOTO & VIDEO ---
 const mediaDataByDay: MediaData = {
   "Random 1": [
-    {
-      id: "h1-1",
-      src: "/photo/kkp-hari1.jpg",
-      caption: "Tiba di lokasi dan Sosialisasi",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h1-2",
-      src: "/photo/kkp-hari3.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
+    { id: "h1-1", src: "/photo/kkp-hari1.jpg", caption: "Tiba di lokasi dan Sosialisasi", author: "Asgar", type: "photo" },
+    { id: "h1-2", src: "/photo/kkp-hari3.jpg", caption: "Random", author: "Asgar", type: "photo" },
   ],
   "Random 2": [
-    {
-      id: "h2-1",
-      src: "/photo/kkp-hari4.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h2-2",
-      src: "/photo/kkp-hari5.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h2-3",
-      src: "/photo/kkp-hari6.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h1-3",
-      src: "/photo/kkp-hari7.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h1-4",
-      src: "/photo/kkp-hari9.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h1-5",
-      src: "/photo/kkp-hari19.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
+    { id: "h2-1", src: "/photo/kkp-hari4.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h2-2", src: "/photo/kkp-hari5.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h2-3", src: "/photo/kkp-hari6.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h1-3", src: "/photo/kkp-hari7.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h1-4", src: "/photo/kkp-hari9.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h1-5", src: "/photo/kkp-hari19.jpg", caption: "Random", author: "Asgar", type: "photo" },
   ],
   "Random 3": [
-    {
-      id: "h3-1",
-      src: "/photo/kkp-hari20.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h3-2",
-      src: "/photo/kkp-hari21.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h3-3",
-      src: "/photo/kkp-sma1.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h3-4",
-      src: "/photo/kkp-sma2.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
+    { id: "h3-1", src: "/photo/kkp-hari20.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h3-2", src: "/photo/kkp-hari21.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h3-3", src: "/photo/kkp-sma1.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h3-4", src: "/photo/kkp-sma2.jpg", caption: "Random", author: "Asgar", type: "photo" },
   ],
   "Random 4": [
-    {
-      id: "h6-1",
-      src: "/photo/kkp-hari29.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h6-2",
-      src: "/photo/kkp-hari30.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h6-3",
-      src: "/photo/kkp-hari31.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h6-4",
-      src: "/photo/kkp-random1.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h6-5",
-      src: "/photo/kkp-random2.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
-    {
-      id: "h6-6",
-      src: "/photo/kkp-random4.jpg",
-      caption: "Random",
-      author: "Asgar",
-      type: "photo",
-    },
+    { id: "h6-1", src: "/photo/kkp-hari29.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h6-2", src: "/photo/kkp-hari30.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h6-3", src: "/photo/kkp-hari31.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h6-4", src: "/photo/kkp-random1.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h6-5", src: "/photo/kkp-random2.jpg", caption: "Random", author: "Asgar", type: "photo" },
+    { id: "h6-6", src: "/photo/kkp-random4.jpg", caption: "Random", author: "Asgar", type: "photo" },
   ],
   "Video Random": [
-    {
-      id: "v-1",
-      src: "/video/random1.mp4",
-      caption: "Video Random Kami Selama di Posko",
-      author: "Kelompok kkp",
-      type: "video",
-    },
-    {
-      id: "v-2",
-      src: "/video/random2.mp4",
-      caption: "Video Random Kami Selama di Posko",
-      author: "Kelompok kkp",
-      type: "video",
-    },
-    {
-      id: "v-3",
-      src: "/video/random3.mp4",
-      caption: "Video Random Kami Selama di Posko",
-      author: "Kelompok kkp",
-      type: "video",
-    },
-    {
-      id: "v-4",
-      src: "/video/random4.mp4",
-      caption: "Video Random Kami Selama di Posko",
-      author: "Kelompok kkp",
-      type: "video",
-    },
-    {
-      id: "v-5",
-      src: "/video/random5.mp4",
-      caption: "Video Random Kami Selama di Posko",
-      author: "Kelompok kkp",
-      type: "video",
-    },
+    { id: "v-1", src: "/video/random1.mp4", caption: "Video Random Kami Selama di Posko", author: "Kelompok kkp", type: "video" },
+    { id: "v-2", src: "/video/random2.mp4", caption: "Video Random Kami Selama di Posko", author: "Kelompok kkp", type: "video" },
+    { id: "v-3", src: "/video/random3.mp4", caption: "Video Random Kami Selama di Posko", author: "Kelompok kkp", type: "video" },
+    { id: "v-4", src: "/video/random4.mp4", caption: "Video Random Kami Selama di Posko", author: "Kelompok kkp", type: "video" },
+    { id: "v-5", src: "/video/random5.mp4", caption: "Video Random Kami Selama di Posko", author: "Kelompok kkp", type: "video" },
   ],
 };
 
@@ -209,29 +71,22 @@ const GalleryClient: FC = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentBgIndex(
-        (prevIndex) => (prevIndex + 1) % headerBackgrounds.length
-      );
-    }, 5000);
+      setCurrentBgIndex((prevIndex) => (prevIndex + 1) % headerBackgrounds.length);
+    }, 5000); 
     return () => clearInterval(timer);
   }, []);
 
   const allMedia = useMemo(() => Object.values(mediaDataByDay).flat(), []);
   const tabs = ["Semua", ...Object.keys(mediaDataByDay)];
-  const currentMediaList =
-    activeTab === "Semua" ? allMedia : mediaDataByDay[activeTab];
+  const currentMediaList = activeTab === "Semua" ? allMedia : mediaDataByDay[activeTab];
 
   const handleItemClick = (item: MediaItem) => setSelectedItem(item);
   const handleCloseLightbox = () => setSelectedItem(null);
 
   const handleNavigation = (direction: number) => {
     if (!selectedItem) return;
-    const currentIndex = currentMediaList.findIndex(
-      (item) => item.id === selectedItem.id
-    );
-    const nextIndex =
-      (currentIndex + direction + currentMediaList.length) %
-      currentMediaList.length;
+    const currentIndex = currentMediaList.findIndex((item) => item.id === selectedItem.id);
+    const nextIndex = (currentIndex + direction + currentMediaList.length) % currentMediaList.length;
     setSelectedItem(currentMediaList[nextIndex]);
   };
 
@@ -324,18 +179,7 @@ const GalleryClient: FC = () => {
             {currentMediaList.map((item) => (
               <motion.div
                 key={item.id}
-                variants={{
-                  hidden: { opacity: 0, y: 20, scale: 0.95 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: {
-                      type: "spring",
-                      stiffness: 150,
-                    },
-                  },
-                }}
+                variants={itemVariants} // <-- PERBAIKAN: Menambahkan kembali prop ini
                 onClick={() => handleItemClick(item)}
               >
                 <div className="group aspect-w-1 aspect-h-1 block bg-slate-200 dark:bg-slate-800 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-300">
@@ -372,7 +216,7 @@ const GalleryClient: FC = () => {
                   )}
                 </div>
               </motion.div>
-            ))}{" "}
+            ))}
           </motion.div>
         </AnimatePresence>
       </main>
