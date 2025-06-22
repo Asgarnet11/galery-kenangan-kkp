@@ -1,5 +1,4 @@
 "use client"; 
-
 import Image from "next/image";
 import { useState, useMemo, useEffect, FC } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -101,7 +100,8 @@ const GalleryClient: FC = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 100 },
+      // === PERBAIKAN DI SINI ===
+      transition: { type: "spring" as const, stiffness: 100 },
     },
   };
 
@@ -179,7 +179,7 @@ const GalleryClient: FC = () => {
             {currentMediaList.map((item) => (
               <motion.div
                 key={item.id}
-                variants={itemVariants} // <-- PERBAIKAN: Menambahkan kembali prop ini
+                variants={itemVariants} 
                 onClick={() => handleItemClick(item)}
               >
                 <div className="group aspect-w-1 aspect-h-1 block bg-slate-200 dark:bg-slate-800 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-300">
