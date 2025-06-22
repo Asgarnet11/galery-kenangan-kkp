@@ -1,7 +1,4 @@
-// src/components/GalleryClient.tsx
-// Komponen ini berisi semua logika interaktif untuk galeri.
-
-"use client"; // Komponen ini adalah Client Component
+"use client";
 
 import Image from "next/image";
 import { useState, useMemo, useEffect, FC } from "react";
@@ -21,7 +18,7 @@ interface MediaData {
   [key: string]: MediaItem[];
 }
 
-// --- DATABASE FOTO ---
+// --- DATABASE FOTO & VIDEO ---
 const mediaDataByDay: MediaData = {
   "Random 1": [
     {
@@ -205,19 +202,18 @@ const headerBackgrounds = [
   "/photo/kkp-hari7.jpg",
 ];
 
-// Ganti nama komponen menjadi GalleryClient
 const GalleryClient: FC = () => {
   const [activeTab, setActiveTab] = useState<string>("Semua");
   const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentBgIndex(
         (prevIndex) => (prevIndex + 1) % headerBackgrounds.length
       );
-    }, 5000); // Ganti gambar setiap 5 detik
-
-    return () => clearInterval(timer); // Membersihkan interval saat komponen tidak lagi ditampilkan
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   const allMedia = useMemo(() => Object.values(mediaDataByDay).flat(), []);
@@ -256,8 +252,7 @@ const GalleryClient: FC = () => {
 
   return (
     <div className="min-h-screen bg-cream-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans transition-colors duration-500">
-      {/* --- BAGIAN HEADER & PESAN KENANGAN --- */}
-      <header className="py-16 md:py-24 text-center relative overflow-hidden">
+      <header className="py-24 md:py-32 text-center relative overflow-hidden h-96 md:h-[500px] flex items-center justify-center">
         <AnimatePresence>
           <motion.div
             key={currentBgIndex}
@@ -271,6 +266,7 @@ const GalleryClient: FC = () => {
               src={headerBackgrounds[currentBgIndex]}
               alt="Background Kenangan KKP"
               fill
+              priority
               className="object-cover"
             />
           </motion.div>
@@ -297,10 +293,9 @@ const GalleryClient: FC = () => {
         </motion.div>
       </header>
 
-      <main className="container mx-auto px-6 pb-16">
-        {/* --- BAGIAN NAVIGASI TAB --- */}
-        <div className="sticky top-0 z-20 bg-cream-50/80 dark:bg-slate-900/80 backdrop-blur-sm py-4 mb-8">
-          <div className="flex justify-center space-x-2 md:space-x-4 overflow-x-auto pb-2 custom-scrollbar">
+      <main className="container mx-auto px-6 pb-16 -mt-16 relative z-30">
+        <div className="sticky top-4 z-20 bg-cream-50/80 dark:bg-slate-900/80 backdrop-blur-md py-4 mb-8 rounded-xl shadow-lg">
+          <div className="flex justify-center flex-wrap gap-2 px-4">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -309,7 +304,7 @@ const GalleryClient: FC = () => {
                   activeTab === tab
                     ? "bg-teal-500 text-white shadow-md"
                     : "bg-white/60 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 hover:bg-teal-100 dark:hover:bg-slate-700"
-                } px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 whitespace-nowrap`}
+                } px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300`}
               >
                 {tab}
               </button>
@@ -317,7 +312,6 @@ const GalleryClient: FC = () => {
           </div>
         </div>
 
-        {/* --- BAGIAN GRID GALERI --- */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -330,7 +324,18 @@ const GalleryClient: FC = () => {
             {currentMediaList.map((item) => (
               <motion.div
                 key={item.id}
-                variants={itemVariants}
+                variants={{
+                  hidden: { opacity: 0, y: 20, scale: 0.95 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 150,
+                    },
+                  },
+                }}
                 onClick={() => handleItemClick(item)}
               >
                 <div className="group aspect-w-1 aspect-h-1 block bg-slate-200 dark:bg-slate-800 rounded-lg overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:shadow-teal-500/20 transition-all duration-300">
@@ -367,12 +372,11 @@ const GalleryClient: FC = () => {
                   )}
                 </div>
               </motion.div>
-            ))}
+            ))}{" "}
           </motion.div>
         </AnimatePresence>
       </main>
 
-      {/* --- BAGIAN LIGHTBOX (MODAL) --- */}
       <AnimatePresence>
         {selectedItem && (
           <motion.div
